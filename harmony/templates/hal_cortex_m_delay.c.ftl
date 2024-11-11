@@ -37,6 +37,8 @@
 #define CONF_CPU_FREQUENCY ${core.CPU_CLOCK_FREQUENCY}
 #endif
 
+#define OPTIMIZE_ONE __attribute__((optimize(1)))
+
 #if CONF_CPU_FREQUENCY < 1000
 #define CPU_FREQ_POWER 3
 #elif CONF_CPU_FREQUENCY < 10000
@@ -119,6 +121,7 @@ uint32_t _get_cycles_for_ms(const uint32_t ms)
 /**
  * \brief Delay loop to delay n number of cycles
  */
+OPTIMIZE_ONE
 void _delay_cycles(void *const hw, uint32_t cycles)
 {
     /*lint -esym(718, __asm) */
